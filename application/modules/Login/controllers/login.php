@@ -9,7 +9,6 @@ class Login extends CI_Controller{
 
 	function __constract(){
 		parent::__constract();
-		// $this->load->model('Login/M_login');
 	}
 
 	public function index(){
@@ -23,7 +22,6 @@ class Login extends CI_Controller{
 	}
 
 	public function loginProcess(){
-		$this->load->model('M_login');
 		//input dari form login
 		$username = $this->input->post('username');
 		$password = md5($this->input->post('password'));
