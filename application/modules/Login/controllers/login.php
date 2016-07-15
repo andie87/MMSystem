@@ -24,8 +24,8 @@ class Login extends CI_Controller{
 	public function loginProcess(){
 		//input dari form login
 		$username = $this->input->post('username');
-		$password = md5($this->input->post('password'));
-
+		$password = sha1($this->input->post('password'));
+		
 		//validasi
 		$this->form_validation->set_rules('username','Username','required|trim');
 		$this->form_validation->set_rules('password','Password','required|trim');
@@ -33,31 +33,42 @@ class Login extends CI_Controller{
 		if($this->form_validation->run()==FALSE){
 			$this->session->set_flashdata('pesan1','username dan password masih kosong');
 			redirect(site_url().'/login');
-			//echo $username + "wooi";
 		}
-		else{
-			$cekuser = $this->M_login->loginCheck($username, $password);
 
+		else{
+			
+			$cekuser = $this->M_login->loginCheck($username, $password);
 			if($cekuser){
 				foreach($cekuser as $datalogin){
-					$username = $datalogin['username'];
+					$fullname = $datalogin['nama_user'];
+					$userlogin = $datalogin['user_login'];
 					$email = $datalogin['email'];
 				}
-
 				$dlogin = array(
-						'username' => $username,
+						'username' => $fullname,
+						'userlogin' => $userlogin,
 						'email' => $email,
 						'logged_in' => TRUE
 					);
 
 				$this->session->set_userdata($dlogin);
 				redirect(site_url().'/dashboard');
-				//echo "cuyy";
 			}
-			else{
+			
+			else {
+				
+				$dlogin = array(
+						'username' => "",
+						'userlogin' => "",
+						'email' => "",
+						'logged_in' => FALSE
+					);
+
+				$this->session->set_userdata($dlogin);
+				
 				$this->session->set_flashdata('pesan2','Maaf..., username dan password salah!');
 				redirect(site_url().'/login');
-				//echo"hjfhdkjs";
+				
 			}
 		}
 	}
