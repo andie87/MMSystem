@@ -16,6 +16,8 @@
     <!-- Font Awesome -->
     <link href="<?php echo base_url('asset/css/font-awesome.min.css')?>" rel="stylesheet">  
     
+    <!-- Datatable -->
+    <link href="<?php echo base_url('asset/css/jquery.dataTables_themeroller.css')?>" rel="stylesheet">
     
     <!-- Pace -->
     <link href="<?php echo base_url('asset/css/pace.css')?>" rel="stylesheet">
@@ -65,8 +67,8 @@
     <div id="wrapper" class="preload">
         <div id="top-nav" class="fixed skin-6">
             <a href="#" class="brand">
-                <span>Endless</span>
-                <span class="text-toggle"> Admin</span>
+                <span>MOU</span>
+                <span class="text-toggle"> System</span>
             </a><!-- /brand -->                 
             <button type="button" class="navbar-toggle pull-left" id="sidebarToggle">
                 <span class="icon-bar"></span>
@@ -81,7 +83,7 @@
             <ul class="nav-notification clearfix">                
                 <li class="profile dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <strong>Username</strong>
+                        <strong><?php echo $this->session->userdata('username')?></strong>
                         <span><i class="fa fa-chevron-down"></i></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -89,7 +91,7 @@
                             <a class="clearfix" href="#">
                                 <img src="<?php echo base_url('asset/img/user.jpg')?>" alt="User Avatar">
                                 <div class="detail">
-                                    <strong>Username</strong>
+                                    <strong><?php echo $this->session->userdata('username')?></strong>
                                     <p class="grey">email@email.com</p> 
                                 </div>
                             </a>
@@ -119,7 +121,8 @@
                 <div class="user-block clearfix">
                     <img src="<?php echo base_url('asset/img/user.jpg')?>" alt="User Avatar">
                     <div class="detail">
-                        <strong>Username</strong><span class="badge badge-danger m-left-xs bounceIn animation-delay4">4</span>
+                        <strong><?php echo $this->session->userdata('username')?></strong>
+                        <!-- <span class="badge badge-danger m-left-xs bounceIn animation-delay4">4</span> -->
                         <ul class="list-inline">
                             <li><a href="profile.html">Profile</a></li>
                             <li><a href="inbox.html" class="no-margin">Inbox</a></li>
@@ -136,13 +139,24 @@
                 </div><!-- /search-block -->
                 <div class="main-menu">
                     <ul>
-                        <li class="active">
-                            <a href="index.html">
+                        <li class="<?php if($menuaktif == "dashboard"): ?>active <?php endif;?>">
+                            <a href="<?php echo site_url('Dashboard');?>">
                                 <span class="menu-icon">
                                     <i class="fa fa-desktop fa-lg"></i> 
                                 </span>
                                 <span class="text">
                                     Dashboard
+                                </span>
+                                <span class="menu-hover"></span>
+                            </a>
+                        </li>
+                        <li class="<?php if($menuaktif == "donatur"): ?>active <?php endif;?>">
+                            <a href="<?php echo site_url('donatur');?>">
+                                <span class="menu-icon">
+                                    <i class="fa fa-university fa-lg"></i> 
+                                </span>
+                                <span class="text">
+                                    Donatur
                                 </span>
                                 <span class="menu-hover"></span>
                             </a>
@@ -303,8 +317,16 @@
                     </ul>
                     
                     <div class="alert alert-info">
-                        Welcome to Endless Admin. Do not forget to check all my pages. 
+                        Welcome to MOU Management System. Do not forget to check all my pages. 
                     </div>
                 </div><!-- /main-menu -->
             </div><!-- /sidebar-inner -->
         </aside>
+
+        <div id="main-container">
+            <div id="breadcrumb">
+                <ul class="breadcrumb">
+                     <li><i class="fa fa-home"></i><a href="index.html"> Home</a></li>
+                     <li class="active"><?php echo $page;?></li>   
+                </ul>
+            </div><!-- /breadcrumb-->            

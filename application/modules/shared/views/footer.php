@@ -1,4 +1,6 @@
-<!-- Footer
+</div><!-- /main-container -->
+
+        <!-- Footer
         ================================================== -->
         <footer>
             <div class="row">
@@ -63,9 +65,6 @@
     <!-- Bootstrap -->
     <script src="<?php echo base_url('asset/bootstrap/js/bootstrap.min.js')?>"></script>
    
-    <!-- Flot -->
-    <script src="<?php echo base_url('asset/js/jquery.flot.min.js')?>"></script>
-   
     <!-- Morris -->
     <script src="<?php echo base_url('asset/js/rapheal.min.js')?>"></script>   
     <script src="<?php echo base_url('asset/js/morris.min.js')?>"></script>    
@@ -92,8 +91,34 @@
     <script src="<?php echo base_url('asset/js/jquery.cookie.min.js')?>"></script>
     
     <!-- Endless -->
-    <script src="<?php echo base_url('asset/js/endless/endless_dashboard.js')?>"></script>
+    
     <script src="<?php echo base_url('asset/js/endless/endless.js')?>"></script>
+
+    <!-- Datatable -->
+    <script src='<?php echo base_url('asset/js/jquery.dataTables.min.js')?>'></script> 
+    <script>
+    $(function  ()  {
+        $('#dataTable').dataTable( {
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers"
+        });
+        
+        $('#chk-all').click(function()  {
+            if($(this).is(':checked'))  {
+                $('#responsiveTable').find('.chk-row').each(function()  {
+                    $(this).prop('checked', true);
+                    $(this).parent().parent().parent().addClass('selected');
+                });
+            }
+            else    {
+                $('#responsiveTable').find('.chk-row').each(function()  {
+                    $(this).prop('checked' , false);
+                    $(this).parent().parent().parent().removeClass('selected');
+                });
+            }
+        });
+    });
+    </script>
     
   </body>
 </html>
