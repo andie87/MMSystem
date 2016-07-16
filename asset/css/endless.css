@@ -407,6 +407,7 @@ aside .sidebar-inner .user-block .detail {
   float: left;
   color: #e6f1f7;
   margin-left: 10px;
+  word-wrap: break-word;
 }
 aside .sidebar-inner .user-block ul {
   margin-top: 5px;
